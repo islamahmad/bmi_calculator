@@ -24,7 +24,7 @@ class BMIHomeState extends State<BMIHome> {
             double.parse(heightTextController.text));
       } else {
         warning = 'Enter your weight and height';
-        judgement = 'unknown';
+        judgement = 'Evaluation is unknown';
         calcdBMI = 'unknown';
       }
     });
@@ -39,11 +39,11 @@ class BMIHomeState extends State<BMIHome> {
   void judgeBMI(String calcdBMI) {
     double BMI = double.parse(calcdBMI);
     if (BMI < 20.0) {
-      judgement = 'thin';
+      judgement = 'Thin';
     } else if (BMI > 25.0) {
-      judgement = 'over weight';
+      judgement = 'Over weight';
     } else {
-      judgement = 'alright';
+      judgement = 'Alright';
     }
   }
 
@@ -111,11 +111,9 @@ class BMIHomeState extends State<BMIHome> {
                   ),
                 ),
                 Container(
-                  height: 40.0,
                   color: Colors.blue,
                   child: FlatButton(
                     onPressed: calculateBMI,
-                    padding: EdgeInsets.all(_paddingConst),
                     child: Text(
                       'Calculate',
                       style: TextStyle(
@@ -128,27 +126,34 @@ class BMIHomeState extends State<BMIHome> {
               ],
             ),
           ),
-          Text(
-            'Your BMI is $calcdBMI',
-            style: TextStyle(
-              fontSize: 20.0,
-              fontStyle: FontStyle.italic,
-            ),
-          ),
-          Text(
-            'Your weight is $judgement',
-            style: TextStyle(
-              fontSize: 20.0,
-              fontStyle: FontStyle.italic,
-            ),
-          ),
-          Text(
-            '$warning',
-            style: TextStyle(
-              fontSize: 20.0,
-              fontStyle: FontStyle.italic,
-              color: Colors.red,
-              fontWeight: FontWeight.bold,
+          Container(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Text(
+                  'Your BMI is $calcdBMI',
+                  style: TextStyle(
+                    fontSize: 20.0,
+                    fontStyle: FontStyle.italic,
+                  ),
+                ),
+                Text(
+                  '$judgement',
+                  style: TextStyle(
+                    fontSize: 20.0,
+                    fontStyle: FontStyle.italic,
+                  ),
+                ),
+                Text(
+                  '$warning',
+                  style: TextStyle(
+                    fontSize: 20.0,
+                    color: Colors.red,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                //showDialog(context: context ,builder: (context) => warning),
+              ],
             ),
           ),
         ],
